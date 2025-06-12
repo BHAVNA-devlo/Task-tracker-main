@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Tracker</title>
+</head>
+<body>
+<h1>All Tasks</h1>
+<form th:action="@{/task}" method="post" th:object="${task}">
+    Title: <input type="text" th:field="*{title}"><br>
+    Due Date: <input type="date" th:field="*{dueDate}"><br>
+    Completed: <input type="checkbox" th:field="*{completed}"><br>
+    <button type="submit">Add Task</button>
+</form>
+<hr>
+<ul>
+    <li th:each="task : ${tasks}">
+        <b th:text="${task.title}"></b> - <span th:text="${task.dueDate}"></span> - 
+        <span th:text="${task.completed ? 'Completed' : 'Incomplete'}"></span>
+    </li>
+</ul>
+</body>
+</html>
